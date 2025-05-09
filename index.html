@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>swarajshejul@portfolio:~$</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #00ff00;
+      font-family: 'Fira Mono', monospace;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .terminal {
+      padding: 2rem;
+    }
+    .prompt::before {
+      content: "swaraj shejul@portfolio:~$ ";
+      color: #00ff00;
+    }
+    .blinking-cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #00ff00;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { background-color: transparent; }
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="section">
+      <div class="prompt">whoami</div>
+      <div>swaraj shejul — Linux enthusiast, project builder, traveler, and video creator.</div>
+    </div>
+
+    <div class="section">
+      <div class="prompt">ls scripts/</div>
+      <ul>
+        <li><a href="#">backup.sh</a></li>
+        <li><a href="#">monitoring.sh</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="prompt">ls projects/</div>
+      <ul>
+        <li>Linux Buddy CLI Tool</li>
+        <li>Home Automation with Pi</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="prompt">ls hobbies/</div>
+      <ul>
+        <li>Exploring new places</li>
+        <li>Travel video editing</li>
+        <li>Documenting DIY projects</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="prompt">contact</div>
+      <div>Email: <a href="mailto:swaraj@example.com">swaraj@example.com</a></div>
+    </div>
+
+    <div class="prompt"><span class="blinking-cursor"></span></div>
+  </div>
+</body>
+</html>
