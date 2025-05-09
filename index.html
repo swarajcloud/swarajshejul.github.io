@@ -212,7 +212,7 @@
       z-index: 0;
       width: 100vw;
       height: 100vh;
-      background: black;
+      background: #000;
     }
   </style>
 </head>
@@ -350,31 +350,56 @@
     terminal.appendChild(line);
   });
 
+  // Stars animation code
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
+
+  let stars = [];
+  const numStars = 150;
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const letters = Array(256).join("1").split("");
-  const fontSize = 12;
-  const columns = canvas.width / fontSize;
-  const drops = Array.from({ length: columns }).fill(1);
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createStars();
+  });
 
-  function drawMatrix() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0f0";
-    ctx.font = fontSize + "px monospace";
-    for (let i = 0; i < drops.length; i++) {
-      const text = String.fromCharCode(0x30A0 + Math.random() * 96);
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
-        drops[i] = 0;
-      }
-      drops[i]++;
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        speed: Math.random() * 0.5 + 0.2
+      });
     }
   }
-  setInterval(drawMatrix, 50);
+
+  function drawStars() {
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#fff";
+    for (let star of stars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+      ctx.fill();
+
+      star.y += star.speed;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    }
+
+    requestAnimationFrame(drawStars);
+  }
+
+  createStars();
+  drawStars();
 </script>
 </body>
 </html>
