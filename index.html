@@ -1,258 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>swarajshejul@portfolio:~$</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PuTTY Style Terminal</title>
   <style>
-    html, body {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+    body {
       margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: 'Fira Mono', monospace;
-      background: linear-gradient(to right, #000000, #001f3f);
-      overflow-x: hidden;
-      color: #ffffff;
-    }
-    #tsparticles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-    .container {
+      background: #000;
+      font-family: 'Fira Code', monospace;
+      color: #fff;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .profile-section {
+      width: 100%;
+      background: url('https://i.imgur.com/3ZQ3Z8h.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
       position: relative;
       z-index: 1;
-      padding: 2rem;
+    }
+
+    .profile-section img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid white;
+    }
+
+    .profile-section h2 {
+      margin: 10px 0 5px;
+    }
+
+    .profile-section p {
+      margin: 4px 0;
+    }
+
+    .main-content {
+      display: flex;
+      width: 100%;
+      max-width: 1400px;
+      justify-content: center;
+      align-items: stretch;
+      gap: 20px;
+      padding: 20px;
       flex-wrap: wrap;
-    }
-    .sidebar {
-      flex: 1;
-      min-width: 280px;
-      padding: 2rem;
-      background: #0b0f1a;
-      border-radius: 10px;
-      margin-right: 2rem;
-      box-shadow: 0 0 25px #00bfff;
-      text-align: center;
-      margin-bottom: 2rem;
-      border: 3px solid #00bfff;
       position: relative;
+      z-index: 1;
     }
-    .sidebar::before {
-      content: "PuTTY";
-      position: absolute;
-      top: -1.5rem;
-      left: 1rem;
-      font-size: 1rem;
-      color: #00bfff;
-      background: #000;
-      padding: 0 0.5rem;
-    }
-    .sidebar img {
-      width: 150px;
-      height: 150px;
-      border-radius: 10%;
-      margin-bottom: 1rem;
-      border: 2px solid #00bfff;
-    }
-    .sidebar h2 {
-      margin: 0.5rem 0;
-      color: #00bfff;
-    }
-    .sidebar p, .sidebar a {
-      color: #ffffff;
-    }
-    .main-terminal {
-      flex: 3;
+
+    .content-section {
+      flex: 1;
       min-width: 300px;
-      background: #000000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-section,
+    .travel-section {
+      flex: 1;
+    }
+
+    .video-section video {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+
+    .putty-window {
+      flex: 1;
+      min-width: 300px;
+      max-width: 100%;
+      height: 100%;
+      border: 2px solid #ccc;
+      box-shadow: 0 0 8px #fff;
+      display: flex;
+      flex-direction: column;
+      background-color: #ccc;
       border-radius: 4px;
-      border: 2px solid #dcdcdc;
-      padding: 0;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
       overflow: hidden;
     }
-    .putty-title-bar {
-      background: #dcdcdc;
-      color: black;
+
+    .putty-header {
+      background: #333;
+      color: #fff;
       padding: 5px 10px;
-      font-weight: bold;
-      border-bottom: 1px solid #999;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .putty-body {
-      background: #000000;
-      color: #ffffff;
-      padding: 1.5rem;
-      font-size: 0.95rem;
-      font-family: 'Fira Mono', monospace;
+
+    .putty-header .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .putty-header .buttons {
+      display: flex;
+      gap: 4px;
+    }
+
+    .putty-header .buttons div {
+      width: 12px;
+      height: 12px;
+      background-color: #fff;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+
+    .terminal-content {
+      flex-grow: 1;
+      padding: 10px;
+      color: #000;
+      overflow-y: auto;
+      font-size: 14px;
+      background-color: #ccc;
+    }
+
+    .line {
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: typeIn 0.2s ease forwards;
+    }
+
+    .line:nth-child(n) {
+      animation-delay: calc(var(--line-index) * 0.2s);
+    }
+
+    @keyframes typeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .toggle-btn {
+      margin-bottom: 10px;
+      padding: 6px 14px;
+      border: none;
+      background-color: #00f;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .travel-summary {
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .travel-summary button {
+      margin-top: 10px;
+      padding: 6px 10px;
+      font-size: 13px;
+      background-color: #008cff;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 99;
+      top: 0; left: 0;
+      width: 100%;
       height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
     }
-    .prompt::before {
-      content: "root@localhost:~# ";
-      color: #ffff00;
+
+    .modal-content {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      max-width: 600px;
+      border-radius: 8px;
     }
-    .blinking-cursor {
-      display: inline-block;
-      width: 10px;
-      height: 1em;
-      background-color: #ffffff;
-      animation: blink 1s steps(1) infinite;
-      vertical-align: bottom;
+
+    .modal-content button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #ff5050;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
-    @keyframes blink {
-      50% { background-color: transparent; }
-    }
-    .section {
-      margin-bottom: 2rem;
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 1rem;
-    }
-    ul li::before {
-      content: "\279C ";
-      color: #00bfff;
-    }
-    ul li.directory {
-      color: #0000ff;
-    }
-    ul li.executable {
-      color: #00ff00;
-    }
-    a {
-      color: #00ffff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    @media screen and (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        padding: 1rem;
-      }
-      .sidebar {
-        margin-right: 0;
-        margin-bottom: 1.5rem;
-      }
+
+    canvas#matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
     }
   </style>
 </head>
 <body>
-  <div id="tsparticles"></div>
-  <div class="container">
-    <div class="sidebar">
-      <img src="https://via.placeholder.com/150" alt="Profile Picture">
-      <h2>Swaraj Shejul</h2>
-      <p>Email: <a href="mailto:swaraj@example.com">swaraj@example.com</a></p>
-      <p>Linux Admin | Developer | Traveler</p>
+<canvas id="matrix"></canvas>
+<div class="profile-section">
+  <img src="your-image.jpg" alt="Profile Image">
+  <h2>Your Name</h2>
+  <p>📞 +91-XXXXXXXXXX</p>
+  <p>📧 your.email@example.com</p>
+</div>
+
+<div class="main-content">
+  <div class="content-section">
+    <button class="toggle-btn" onclick="toggleSection()">Switch to Travel Journey</button>
+
+    <div class="video-section" id="videoSection">
+      <video controls>
+        <source src="intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
 
-    <div class="main-terminal">
-      <div class="putty-title-bar">root@localhost - PuTTY</div>
-      <div class="putty-body">
-        <div class="section">
-          <div class="prompt">whoami</div>
-          <div>Linux enthusiast, project builder, traveler, and video creator.</div>
-        </div>
-
-        <div class="section">
-          <div class="prompt">ls linux_skills/</div>
-          <ul>
-            <li class="directory">Shell Scripting</li>
-            <li class="directory">System Administration</li>
-            <li class="directory">Networking & DNS</li>
-            <li class="directory">Server Monitoring</li>
-            <li class="directory">Firewall & Security</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <div class="prompt">ls scripts/</div>
-          <ul>
-            <li class="executable"><a href="#">backup.sh</a></li>
-            <li class="executable"><a href="#">monitoring.sh</a></li>
-            <li class="executable"><a href="#">disk-check.sh</a></li>
-          </ul>
-        </div>
-
-        <div class="blinking-cursor"></div>
+    <div class="travel-section" id="travelSection">
+      <div class="travel-summary">
+        <p>I love to travel and document my experiences. From beaches to mountains, every destination has a story to tell.</p>
+        <button onclick="openModal()">Read More</button>
       </div>
     </div>
   </div>
 
-  <script>
-    tsParticles.load("tsparticles", {
-      background: {
-        color: {
-          value: "#000000"
-        }
-      },
-      fpsLimit: 60,
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: "repulse"
-          },
-          resize: true
-        },
-        modes: {
-          repulse: {
-            distance: 100,
-            duration: 0.4
-          }
-        }
-      },
-      particles: {
-        color: {
-          value: "#00bfff"
-        },
-        links: {
-          color: "#00bfff",
-          distance: 150,
-          enable: true,
-          opacity: 0.5,
-          width: 1
-        },
-        collisions: {
-          enable: false
-        },
-        move: {
-          direction: "none",
-          enable: true,
-          outModes: {
-            default: "bounce"
-          },
-          random: false,
-          speed: 2,
-          straight: false
-        },
-        number: {
-          density: {
-            enable: true,
-            area: 800
-          },
-          value: 80
-        },
-        opacity: {
-          value: 0.5
-        },
-        shape: {
-          type: "circle"
-        },
-        size: {
-          value: { min: 1, max: 5 }
-        }
-      },
-      detectRetina: true
-    });
-  </script>
+  <div class="putty-window" id="puttyWindow">
+    <div class="putty-header">
+      <div class="title">PuTTY - root@localhost</div>
+      <div class="buttons">
+        <div title="Minimize" onclick="minimizeWindow()"></div>
+        <div title="Maximize" onclick="maximizeWindow()"></div>
+        <div title="Toggle Dark Mode" onclick="toggleDarkMode()"></div>
+      </div>
+    </div>
+    <div class="terminal-content" id="terminalContent"></div>
+  </div>
+</div>
+
+<div class="modal" id="travelModal">
+  <div class="modal-content">
+    <h3>My Travel Journey</h3>
+    <p>Over the years, I’ve ventured into forests, trekked high hills, and explored culturally rich cities. Every trip has deepened my understanding of people and places. With each journey, my love for storytelling and videography grows stronger, helping me reflect that in every frame I shoot.</p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+  let isMinimized = false;
+  let isMaximized = false;
+  let isDarkMode = false;
+  let showVideo = true;
+
+  const videoSection = document.getElementById('videoSection');
+  const travelSection = document.getElementById('travelSection');
+  const toggleBtn = document.querySelector('.toggle-btn');
+
+  videoSection.style.display = 'block';
+
+  function toggleSection() {
+    showVideo = !showVideo;
+    videoSection.style.display = showVideo ? 'block' : 'none';
+    travelSection.style.display = showVideo ? 'none' : 'block';
+    toggleBtn.textContent = showVideo ? 'Switch to Travel Journey' : 'Switch to Video Intro';
+  }
+
+  function openModal() {
+    document.getElementById('travelModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('travelModal').style.display = 'none';
+  }
+
+  function minimizeWindow() {
+    const terminal = document.getElementById('terminalContent');
+    terminal.style.display = isMinimized ? 'block' : 'none';
+    isMinimized = !isMinimized;
+  }
+
+  function maximizeWindow() {
+    const windowEl = document.getElementById('puttyWindow');
+    if (!isMaximized) {
+      windowEl.style.width = '100%';
+      windowEl.style.height = '90vh';
+    } else {
+      windowEl.style.width = '100%';
+      windowEl.style.height = '400px';
+    }
+    isMaximized = !isMaximized;
+  }
+
+  function toggleDarkMode() {
+    const terminal = document.querySelector('.terminal-content');
+    isDarkMode = !isDarkMode;
+    terminal.style.backgroundColor = isDarkMode ? '#000' : '#ccc';
+    terminal.style.color = isDarkMode ? '#0f0' : '#000';
+  }
+
+  const lines = [
+    '[root@localhost ~]# whoami',
+    'Linux Administrator - 3 Years Experience',
+    '[root@localhost ~]# echo "Key Skills & Responsibilities"',
+    '✅ Linux Server Administration',
+    '✅ Shell Scripting & Automation',
+    '✅ Troubleshooting & System Support',
+    '✅ Service Management',
+    '✅ Log Analysis & Security Hardening',
+    '✅ Monitoring & Backup Management',
+    '✅ Collaboration & Documentation',
+    '[root@localhost ~]# echo "Experience"',
+    '🔹 Linux Administrator | Infosys | Jun 2022 – Present',
+    '  • Managing Linux servers for uptime and performance',
+    '  • Developing Bash scripts for automation',
+    '  • Handling user access and security updates',
+    '  • Using Nagios/Zabbix for monitoring',
+    '  • Configuring DNS, Apache/Nginx, and MySQL',
+    '[root@localhost ~]# echo "Future Goals"',
+    'Passionate about automation and learning emerging tech.',
+    'Aiming to grow into Cloud, DevOps & Infra Automation.',
+    '[root@localhost ~]#'
+  ];
+
+  const terminal = document.getElementById('terminalContent');
+  lines.forEach((text, index) => {
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.style.setProperty('--line-index', index);
+    line.textContent = text;
+    terminal.appendChild(line);
+  });
+
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letters = Array(256).join("1").split("");
+  const fontSize = 12;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0f0";
+    ctx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+      const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+  setInterval(drawMatrix, 50);
+</script>
 </body>
 </html>
