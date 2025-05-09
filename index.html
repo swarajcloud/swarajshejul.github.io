@@ -35,17 +35,29 @@
       flex: 1;
       min-width: 280px;
       padding: 2rem;
-      background: rgba(0, 15, 30, 0.85);
+      background: #0b0f1a;
       border-radius: 10px;
       margin-right: 2rem;
-      box-shadow: 0 0 15px #00bfff;
+      box-shadow: 0 0 25px #00bfff;
       text-align: center;
       margin-bottom: 2rem;
+      border: 3px solid #00bfff;
+      position: relative;
+    }
+    .sidebar::before {
+      content: "PuTTY";
+      position: absolute;
+      top: -1.5rem;
+      left: 1rem;
+      font-size: 1rem;
+      color: #00bfff;
+      background: #000;
+      padding: 0 0.5rem;
     }
     .sidebar img {
       width: 150px;
       height: 150px;
-      border-radius: 50%;
+      border-radius: 10%;
       margin-bottom: 1rem;
       border: 2px solid #00bfff;
     }
@@ -89,6 +101,7 @@
       color: #ffee00;
       font-family: 'Courier New', Courier, monospace;
       margin-top: 1rem;
+      position: relative;
     }
     .python-shell::before {
       content: ">>> ";
@@ -106,7 +119,7 @@
       padding-left: 1rem;
     }
     ul li::before {
-      content: "➜ ";
+      content: "\279C ";
       color: #00bfff;
     }
     @media screen and (max-width: 768px) {
