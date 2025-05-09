@@ -14,23 +14,54 @@
       height: 100%;
       font-family: 'Fira Mono', monospace;
       background: #000;
-      overflow: hidden;
+      overflow-x: hidden;
       color: #00ff90;
     }
     #tsparticles {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
       z-index: 0;
     }
-    .terminal {
+    .container {
+      display: flex;
+      flex-direction: row;
       position: relative;
       z-index: 1;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.8);
-      max-width: 800px;
-      margin: 5rem auto;
+      flex-wrap: wrap;
+    }
+    .sidebar {
+      flex: 1;
+      min-width: 280px;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.85);
       border-radius: 10px;
+      margin-right: 2rem;
+      box-shadow: 0 0 15px #00ff90aa;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .sidebar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 2px solid #00ff90;
+    }
+    .sidebar h2 {
+      margin: 0.5rem 0;
+      color: #00ffff;
+    }
+    .sidebar p, .sidebar a {
+      color: #00ff90;
+    }
+    .main-terminal {
+      flex: 3;
+      min-width: 300px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 10px;
+      padding: 2rem;
       box-shadow: 0 0 20px #00ff90aa;
     }
     .prompt::before {
@@ -49,6 +80,18 @@
     .section {
       margin-bottom: 2rem;
     }
+    .python-shell {
+      background: #111;
+      padding: 1rem;
+      border: 1px solid #00ff90;
+      border-radius: 8px;
+      color: #00ff90;
+      margin-top: 1rem;
+    }
+    .python-shell::before {
+      content: ">>> ";
+      color: #00ffff;
+    }
     a {
       color: #00ffff;
       text-decoration: none;
@@ -64,47 +107,60 @@
       content: "➜ ";
       color: #00ffff;
     }
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div id="tsparticles"></div>
-  <div class="terminal">
-    <div class="section">
-      <div class="prompt">whoami</div>
-      <div>swaraj shejul — Linux enthusiast, project builder, traveler, and video creator.</div>
+  <div class="container">
+    <div class="sidebar">
+      <img src="https://via.placeholder.com/150" alt="Profile Picture">
+      <h2>Swaraj Shejul</h2>
+      <p>Email: <a href="mailto:swaraj@example.com">swaraj@example.com</a></p>
+      <p>Linux Admin | Developer | Traveler</p>
     </div>
 
-    <div class="section">
-      <div class="prompt">ls scripts/</div>
-      <ul>
-        <li><a href="#">backup.sh</a></li>
-        <li><a href="#">monitoring.sh</a></li>
-      </ul>
-    </div>
+    <div class="main-terminal">
+      <div class="section">
+        <div class="prompt">whoami</div>
+        <div>Linux enthusiast, project builder, traveler, and video creator.</div>
+      </div>
 
-    <div class="section">
-      <div class="prompt">ls projects/</div>
-      <ul>
-        <li>Linux Buddy CLI Tool</li>
-        <li>Home Automation with Pi</li>
-      </ul>
-    </div>
+      <div class="section">
+        <div class="prompt">ls linux_skills/</div>
+        <ul>
+          <li>Shell Scripting</li>
+          <li>System Administration</li>
+          <li>Networking & DNS</li>
+          <li>Server Monitoring</li>
+          <li>Firewall & Security</li>
+        </ul>
+      </div>
 
-    <div class="section">
-      <div class="prompt">ls hobbies/</div>
-      <ul>
-        <li>Exploring new places</li>
-        <li>Travel video editing</li>
-        <li>Documenting DIY projects</li>
-      </ul>
-    </div>
+      <div class="section">
+        <div class="prompt">python3</div>
+        <div class="python-shell">Python, Flask, Automation, Pandas</div>
+        <div class="python-shell">HTML, CSS, JavaScript, Web Design</div>
+      </div>
 
-    <div class="section">
-      <div class="prompt">contact</div>
-      <div>Email: <a href="mailto:swaraj@example.com">swaraj@example.com</a></div>
+      <div class="section">
+        <div class="prompt">ls scripts/</div>
+        <ul>
+          <li><a href="#">backup.sh</a></li>
+          <li><a href="#">monitoring.sh</a></li>
+          <li><a href="#">disk-check.sh</a></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="prompt"><span class="blinking-cursor"></span></div>
   </div>
 
   <script>
