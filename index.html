@@ -13,9 +13,9 @@
       width: 100%;
       height: 100%;
       font-family: 'Fira Mono', monospace;
-      background: #000;
+      background: linear-gradient(to right, #000000, #001f3f);
       overflow-x: hidden;
-      color: #00ff90;
+      color: #00ffea;
     }
     #tsparticles {
       position: fixed;
@@ -35,10 +35,10 @@
       flex: 1;
       min-width: 280px;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 15, 30, 0.85);
       border-radius: 10px;
       margin-right: 2rem;
-      box-shadow: 0 0 15px #00ff90aa;
+      box-shadow: 0 0 15px #00bfff;
       text-align: center;
       margin-bottom: 2rem;
     }
@@ -47,31 +47,32 @@
       height: 150px;
       border-radius: 50%;
       margin-bottom: 1rem;
-      border: 2px solid #00ff90;
+      border: 2px solid #00bfff;
     }
     .sidebar h2 {
       margin: 0.5rem 0;
-      color: #00ffff;
+      color: #00bfff;
     }
     .sidebar p, .sidebar a {
-      color: #00ff90;
+      color: #00ffea;
     }
     .main-terminal {
       flex: 3;
       min-width: 300px;
-      background: rgba(0, 0, 0, 0.85);
+      background: #001a33;
       border-radius: 10px;
       padding: 2rem;
-      box-shadow: 0 0 20px #00ff90aa;
+      box-shadow: inset 0 0 10px #00bfff;
+      color: #33ffcc;
     }
     .prompt::before {
-      content: "swaraj shejul@portfolio:~$ ";
-      color: #00ff90;
+      content: "swaraj shejul@putty:~$ ";
+      color: #00ffea;
     }
     .blinking-cursor {
       display: inline-block;
       width: 10px;
-      background-color: #00ff90;
+      background-color: #00ffea;
       animation: blink 1s steps(1) infinite;
     }
     @keyframes blink {
@@ -81,16 +82,17 @@
       margin-bottom: 2rem;
     }
     .python-shell {
-      background: #111;
+      background: #0b0c0d;
       padding: 1rem;
-      border: 1px solid #00ff90;
+      border: 1px solid #00ffea;
       border-radius: 8px;
-      color: #00ff90;
+      color: #ffee00;
+      font-family: 'Courier New', Courier, monospace;
       margin-top: 1rem;
     }
     .python-shell::before {
       content: ">>> ";
-      color: #00ffff;
+      color: #00bfff;
     }
     a {
       color: #00ffff;
@@ -105,7 +107,7 @@
     }
     ul li::before {
       content: "➜ ";
-      color: #00ffff;
+      color: #00bfff;
     }
     @media screen and (max-width: 768px) {
       .container {
@@ -167,7 +169,7 @@
     tsParticles.load("tsparticles", {
       background: {
         color: {
-          value: "#000"
+          value: "#000000"
         }
       },
       fpsLimit: 60,
@@ -188,10 +190,10 @@
       },
       particles: {
         color: {
-          value: "#00ff90"
+          value: "#00bfff"
         },
         links: {
-          color: "#00ff90",
+          color: "#00bfff",
           distance: 150,
           enable: true,
           opacity: 0.5,
