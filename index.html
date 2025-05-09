@@ -15,7 +15,7 @@
       font-family: 'Fira Mono', monospace;
       background: linear-gradient(to right, #000000, #001f3f);
       overflow-x: hidden;
-      color: #00ffea;
+      color: #ffffff;
     }
     #tsparticles {
       position: fixed;
@@ -66,7 +66,7 @@
       color: #00bfff;
     }
     .sidebar p, .sidebar a {
-      color: #00ffea;
+      color: #ffffff;
     }
     .main-terminal {
       flex: 3;
@@ -87,48 +87,29 @@
     }
     .putty-body {
       background: #000000;
-      color: #33ffcc;
+      color: #ffffff;
       padding: 1.5rem;
       font-size: 0.95rem;
       font-family: 'Fira Mono', monospace;
       height: 100%;
     }
     .prompt::before {
-      content: "swaraj shejul@putty:~$ ";
-      color: #00ffea;
+      content: "root@localhost:~# ";
+      color: #ffff00;
     }
     .blinking-cursor {
       display: inline-block;
       width: 10px;
-      background-color: #00ffea;
+      height: 1em;
+      background-color: #ffffff;
       animation: blink 1s steps(1) infinite;
+      vertical-align: bottom;
     }
     @keyframes blink {
       50% { background-color: transparent; }
     }
     .section {
       margin-bottom: 2rem;
-    }
-    .python-shell {
-      background: #0b0c0d;
-      padding: 1rem;
-      border: 1px solid #00ffea;
-      border-radius: 8px;
-      color: #ffee00;
-      font-family: 'Courier New', Courier, monospace;
-      margin-top: 1rem;
-      position: relative;
-    }
-    .python-shell::before {
-      content: ">>> ";
-      color: #00bfff;
-    }
-    a {
-      color: #00ffff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
     }
     ul {
       list-style-type: none;
@@ -137,6 +118,19 @@
     ul li::before {
       content: "\279C ";
       color: #00bfff;
+    }
+    ul li.directory {
+      color: #0000ff;
+    }
+    ul li.executable {
+      color: #00ff00;
+    }
+    a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     @media screen and (max-width: 768px) {
       .container {
@@ -171,28 +165,24 @@
         <div class="section">
           <div class="prompt">ls linux_skills/</div>
           <ul>
-            <li>Shell Scripting</li>
-            <li>System Administration</li>
-            <li>Networking & DNS</li>
-            <li>Server Monitoring</li>
-            <li>Firewall & Security</li>
+            <li class="directory">Shell Scripting</li>
+            <li class="directory">System Administration</li>
+            <li class="directory">Networking & DNS</li>
+            <li class="directory">Server Monitoring</li>
+            <li class="directory">Firewall & Security</li>
           </ul>
-        </div>
-
-        <div class="section">
-          <div class="prompt">python3</div>
-          <div class="python-shell">Python, Flask, Automation, Pandas</div>
-          <div class="python-shell">HTML, CSS, JavaScript, Web Design</div>
         </div>
 
         <div class="section">
           <div class="prompt">ls scripts/</div>
           <ul>
-            <li><a href="#">backup.sh</a></li>
-            <li><a href="#">monitoring.sh</a></li>
-            <li><a href="#">disk-check.sh</a></li>
+            <li class="executable"><a href="#">backup.sh</a></li>
+            <li class="executable"><a href="#">monitoring.sh</a></li>
+            <li class="executable"><a href="#">disk-check.sh</a></li>
           </ul>
         </div>
+
+        <div class="blinking-cursor"></div>
       </div>
     </div>
   </div>
