@@ -71,11 +71,27 @@
     .main-terminal {
       flex: 3;
       min-width: 300px;
-      background: #001a33;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: inset 0 0 10px #00bfff;
+      background: #000000;
+      border-radius: 4px;
+      border: 2px solid #dcdcdc;
+      padding: 0;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+    .putty-title-bar {
+      background: #dcdcdc;
+      color: black;
+      padding: 5px 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #999;
+    }
+    .putty-body {
+      background: #000000;
       color: #33ffcc;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      font-family: 'Fira Mono', monospace;
+      height: 100%;
     }
     .prompt::before {
       content: "swaraj shejul@putty:~$ ";
@@ -145,35 +161,38 @@
     </div>
 
     <div class="main-terminal">
-      <div class="section">
-        <div class="prompt">whoami</div>
-        <div>Linux enthusiast, project builder, traveler, and video creator.</div>
-      </div>
+      <div class="putty-title-bar">root@localhost - PuTTY</div>
+      <div class="putty-body">
+        <div class="section">
+          <div class="prompt">whoami</div>
+          <div>Linux enthusiast, project builder, traveler, and video creator.</div>
+        </div>
 
-      <div class="section">
-        <div class="prompt">ls linux_skills/</div>
-        <ul>
-          <li>Shell Scripting</li>
-          <li>System Administration</li>
-          <li>Networking & DNS</li>
-          <li>Server Monitoring</li>
-          <li>Firewall & Security</li>
-        </ul>
-      </div>
+        <div class="section">
+          <div class="prompt">ls linux_skills/</div>
+          <ul>
+            <li>Shell Scripting</li>
+            <li>System Administration</li>
+            <li>Networking & DNS</li>
+            <li>Server Monitoring</li>
+            <li>Firewall & Security</li>
+          </ul>
+        </div>
 
-      <div class="section">
-        <div class="prompt">python3</div>
-        <div class="python-shell">Python, Flask, Automation, Pandas</div>
-        <div class="python-shell">HTML, CSS, JavaScript, Web Design</div>
-      </div>
+        <div class="section">
+          <div class="prompt">python3</div>
+          <div class="python-shell">Python, Flask, Automation, Pandas</div>
+          <div class="python-shell">HTML, CSS, JavaScript, Web Design</div>
+        </div>
 
-      <div class="section">
-        <div class="prompt">ls scripts/</div>
-        <ul>
-          <li><a href="#">backup.sh</a></li>
-          <li><a href="#">monitoring.sh</a></li>
-          <li><a href="#">disk-check.sh</a></li>
-        </ul>
+        <div class="section">
+          <div class="prompt">ls scripts/</div>
+          <ul>
+            <li><a href="#">backup.sh</a></li>
+            <li><a href="#">monitoring.sh</a></li>
+            <li><a href="#">disk-check.sh</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
